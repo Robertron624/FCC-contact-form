@@ -58,6 +58,34 @@ button {
 
 /* -------------- utility classes ------------------ */
 
+/* display */
+
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.hidden {
+  display: none;
+}
+
+/* width */
+
+.w-100 {
+  width: 100%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
 /* position */
 
 .flex {
@@ -172,6 +200,16 @@ button {
   font-size: 3rem;
 }
 
+.font-bold {
+  font-weight: bold;
+}
+
+.font-light {
+  font-weight: lighter;
+}
+
+
+
 /* ------------------ custom styles  ------------------- */
 
 body {
@@ -180,13 +218,14 @@ body {
   justify-content: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: var(--medium-grey);
+  background-color: var(--light-green);
 }
 
 main {
   padding-block: 2rem;
   padding-inline: .8rem;
   width: 100%;
+  color: var(--dark-grey);
 }
 
 .container {
@@ -198,3 +237,51 @@ main {
   border-radius: .8rem;
 }
 
+form {
+  margin-block-start: 2rem;
+
+}
+
+form .asterisk {
+  color: var(--green);
+  margin-left: .3rem;
+}
+
+form .form-group {
+  margin-block-end: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+form .form-group label {
+  font-size: .875rem;
+}
+
+form .form-group textarea,
+form .form-group input {
+  padding: .8rem;
+  border-radius: .5rem;
+  border: 1px solid var(--medium-grey);
+}
+
+form .form-group textarea {
+  resize: none;
+  min-height: 12rem;
+}
+
+form .form-group.query-type .options .option{
+  border: 1px solid var(--medium-grey);
+  border-radius: .5rem;
+  padding: .8rem 1.5rem;
+  cursor: pointer;
+}
+
+form button {
+  display: block;
+  background-color: var(--green);
+  color: var(--white);
+  padding: 1.2rem .8rem;
+  border-radius: .5rem;
+  margin-block-start: 2rem;
+}
