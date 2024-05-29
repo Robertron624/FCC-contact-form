@@ -20,7 +20,7 @@
                   *
                 </span>
               </label>
-              <input type="text" required id="first-name" name="first-name" />
+              <input type="text" id="first-name" name="first-name" />
               <p data-error="firstName" class="error-message"></p>
             </div>
             <div class="form-group">
@@ -29,7 +29,7 @@
                   *
                 </span>
               </label>
-              <input type="email" required id="email" name="email" />
+              <input type="text" id="last-name" name="last-name" />
               <p data-error="lastName" class="error-message"></p>
             </div>
           </div>
@@ -39,11 +39,11 @@
                 *
               </span>
             </label>
-            <input type="email" required id="email" name="email" />
+            <input type="email" id="email" name="email" />
             <p data-error="email" class="error-message"></p>
           </div>
           <div class="form-group query-type">
-            <label for="query-type">
+            <label>
               Query Type <span class="asterisk">
                 *
               </span>
@@ -64,12 +64,12 @@
             <label for="message">
               Message <span class="asterisk">*</span>
             </label>
-            <textarea required id="message" name="message"></textarea>
+            <textarea id="message" name="message"></textarea>
             <p data-error="message" class="error-message"></p>
           </div>
           <div class="consent cursor-pointer flex gap-2 flex-col">
             <div class="flex gap-2">
-              <input type="checkbox" required id="consent" name="consent" />
+              <input type="checkbox" id="consent" name="consent" />
               <label for="consent" class="cursor-pointer">
                 I consent to being contacted by the team <span class="asterisk">*</span>
               </label>
@@ -80,14 +80,16 @@
         </form>
       </section>
       <dialog id="success-dialog" class="success-dialog">
-        <div class="dialog-content">
-          <h2>
-            Thank you for your submission
-          </h2>
+        <div class="dialog-content flex flex-col gap-2">
+          <div class="header flex gap-2 align-center">
+            <img src="/public/images/icon-success-check.svg" alt="check icon">
+            <p>
+              Message Sent!
+            </p>
+          </div>
           <p>
-            We will be in touch shortly
+            Thanks for completing the form. We'll be in touch soon!
           </p>
-          <button id="close-dialog" class="mx-auto w-100 text-size-1">Close</button>
         </div>
       </dialog>
     </main>

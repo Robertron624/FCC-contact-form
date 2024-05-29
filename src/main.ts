@@ -1,46 +1,84 @@
-import './style.css';
+import "./style.css";
 
-import { Consent, QueryType } from './types';
-import { validateData } from './utils';
+import { Consent, QueryType } from "./types";
+import { validateData } from "./utils";
 
-function main(){
-    
-    const form = document.querySelector('form') as HTMLFormElement;
+function main() {
+  const form = document.querySelector("form") as HTMLFormElement;
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const formData = new FormData(form);
-        
-        const firstName = formData.get('firstName') as string;
-        const lastName = formData.get('lastName') as string;
-        const email = formData.get('email') as string;
-        const queryType = formData.get('queryType') as QueryType;
-        const message = formData.get('message') as string;
-        const consent = formData.get('consent') as Consent;
+  const successDialog = document.querySelector(
+    ".success-dialog"
+  ) as HTMLDialogElement;
 
-        const data = {
-            firstName,
-            lastName,
-            email,
-            queryType,
-            message,
-            consent
-        };
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
 
-        const errors = validateData(data);
+    const firstName = formData.get("first-name") as string;
+    const lastName = formData.get("last-name") as string;
+    const email = formData.get("email") as string;
+    const queryType = formData.get("query-type") as QueryType;
+    const message = formData.get("message") as string;
+    const consent = formData.get("consent") as Consent;
 
-        if(errors.length == 0){
-            alert('Form submitted successfully');
-            return;
+    // clear all errors
+    const errorFields = document.querySelectorAll(".error-message");
+    errorFields.forEach((field) => {
+      field.textContent = "";
+
+        const closestInput = field
+            .closest(".form-group")
+            ?.querySelector("input, select, textarea");
+        if (closestInput) {
+            closestInput.classList.remove("error");
         }
-
-        errors.forEach(({field, message}) => {
-            const errorField = document.querySelector(`[data-error="${field}"]`);
-            if(errorField){
-                errorField.textContent = message;
-            }
-        });
     });
+
+    const data = {
+      firstName,
+      lastName,
+      email,
+      queryType,
+      message,
+      consent,
+    };
+
+    console.log("data -> ", data);
+
+    const errors = validateData(data);
+
+    console.log("errors -> ", errors);
+
+    if (errors.length == 0) {
+      if (successDialog) {
+        successDialog.showModal();
+        form.reset();
+
+        // close the dialog when clicked outside
+        successDialog.addEventListener("click", (e) => {
+          if (e.target === successDialog) {
+            successDialog.close();
+          }
+        });
+      }
+
+      return;
+    }
+
+    errors.forEach(({ field, message }) => {
+      const errorField = document.querySelector(`[data-error="${field}"]`);
+      if (errorField) {
+        errorField.textContent = message;
+
+        const closestInput = errorField
+          .closest(".form-group")
+          ?.querySelector("input, select, textarea");
+        if (closestInput) {
+          closestInput.classList.add("error");
+        }
+      }
+    });
+  });
 }
 
 main();

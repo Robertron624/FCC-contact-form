@@ -4,18 +4,19 @@ export function validateData(data: MyFormData){
     const errors: {field: string, message: string}[] = [];
 
     const {firstName, lastName, email, queryType, message, consent} = data;
+    const requiredMessage = 'This field is required';
 
     if(!firstName){
         errors.push({
             field: 'firstName',
-            message: 'This field is required'
+            message: requiredMessage
         });
     }
 
     if(!lastName){
         errors.push({
             field: 'lastName',
-            message: 'This field is required'
+            message: requiredMessage
         });
     }
 
@@ -36,7 +37,7 @@ export function validateData(data: MyFormData){
     if(!message){
         errors.push({
             field: 'message',
-            message: 'This field is required'
+            message: requiredMessage
         });
     }
 
