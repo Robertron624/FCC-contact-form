@@ -295,6 +295,35 @@ form .form-group.query-type .options .option{
   cursor: pointer;
 }
 
+form .options .option label {
+  cursor: pointer;
+}
+
+.options .option.active {
+  background-color: var(--light-green);
+}
+
+form input[type="checkbox"] {
+  opacity: 1;
+}
+
+.custom-checkmark {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: #fff;
+  color: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  visibility: hidden;
+}
+
+/* Estilo para mostrar el checkmark personalizado cuando el checkbox está chequeado */
+input[type="checkbox"]:checked + .checkboxes label .custom-checkmark {
+  visibility: visible;
+}
+
 form button {
   display: block;
   background-color: var(--green);

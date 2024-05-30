@@ -6,6 +6,29 @@ import { validateData } from "./utils";
 function main() {
   const form = document.querySelector("form") as HTMLFormElement;
 
+  const queryTypeOptions = document.querySelectorAll(
+    '.option'
+  );
+    queryTypeOptions.forEach((option) => {
+        option.addEventListener("click", (e) => {
+            const clickedOption = e.currentTarget as HTMLElement;
+        
+            // remove active class from all options
+            queryTypeOptions.forEach((option) => {
+                option.classList.remove("active");
+            });
+    
+            // add active class to the clicked option
+            clickedOption.classList.add("active");
+    
+            // check the input radio element
+            const input = clickedOption.querySelector("input");
+            if (input) {
+                input.checked = true;
+            }
+        });
+    });
+
   const successDialog = document.querySelector(
     ".success-dialog"
   ) as HTMLDialogElement;
@@ -50,10 +73,15 @@ function main() {
     console.log("errors -> ", errors);
 
     if (errors.length == 0) {
+      form.reset();
+
+      // remove active class from all options
+      queryTypeOptions.forEach((option) => {
+        option.classList.remove("active");
+      });
+
       if (successDialog) {
         successDialog.showModal();
-        form.reset();
-
         // close the dialog when clicked outside
         successDialog.addEventListener("click", (e) => {
           if (e.target === successDialog) {
