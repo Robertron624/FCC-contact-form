@@ -66,11 +66,7 @@ function main() {
       consent,
     };
 
-    console.log("data -> ", data);
-
     const errors = validateData(data);
-
-    console.log("errors -> ", errors);
 
     if (errors.length == 0) {
       form.reset();

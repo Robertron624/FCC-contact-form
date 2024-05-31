@@ -1,5 +1,9 @@
 import { MyFormData } from "./types";
 
+function isValidEmail(email: string) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 export function validateData(data: MyFormData){
     const errors: {field: string, message: string}[] = [];
 
@@ -20,7 +24,9 @@ export function validateData(data: MyFormData){
         });
     }
 
-    if(!email){
+    const isSubmittedEmailValid = isValidEmail(email);
+
+    if(!email || !isSubmittedEmailValid){
         errors.push({
             field: 'email',
             message: 'Please enter a valid email address'

@@ -269,8 +269,14 @@ form .form-group label {
   font-size: .875rem;
 }
 
+form .form-group input[type="radio"] {
+  accent-color: var(--green);
+  width: 1rem;
+  height: 1rem;
+}
+
 form .form-group textarea,
-form .form-group input {
+form .form-group input:not([type="radio"]) {
   padding: .8rem;
   border-radius: .5rem;
   border: 1.5px solid var(--medium-grey);
@@ -278,8 +284,16 @@ form .form-group input {
   cursor: pointer;
 }
 
-form .form-group input:hover{
-  border-color: var(--green);
+form .form-group input:not([type="radio"]):hover,
+form .form-group textarea:hover
+{
+  outline: 1.5px solid var(--green);
+}
+
+
+form .form-group input:focus-visible,
+form .form-group textarea:focus-visible{
+  outline: 1.5px solid var(--green);
 }
 
 
@@ -293,6 +307,10 @@ form .form-group.query-type .options .option{
   border-radius: .5rem;
   padding: .8rem 1.5rem;
   cursor: pointer;
+}
+
+form .form-group.query-type .options .option:hover {
+  outline: 1.5px solid var(--green);
 }
 
 form .options .option label {
@@ -363,7 +381,7 @@ form button:hover {
 .error-message {
   color: var(--red);
   font-size: .75rem;
-  height: 14px;
+  height: 0.875rem;
 }
 
 textarea.error,
