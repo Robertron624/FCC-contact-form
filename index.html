@@ -71,7 +71,7 @@
             <div class="checkboxes">          
               <label for="consent" class="cursor-pointer control-form">
                 <input class="cursor-pointer" type="checkbox" id="consent" name="consent" />
-                <p>I consent to being contacted by the team <span class="asterisk">*</span></p> 
+                <span>I consent to being contacted by the team <i class="asterisk">*</i></span> 
               </label>
             </div>
             <p data-error="consent" class="error-message"></p>
@@ -82,14 +82,14 @@
       <dialog id="success-dialog" class="success-dialog">
         <div class="dialog-content flex flex-col gap-2">
           <div class="header flex gap-2 align-center">
-            <img src="/images/icon-success-check.svg" alt="check icon">
+            <img lazy src="/images/icon-success-check.svg" alt="check icon">
             <p>
               Message Sent!
             </p>
           </div>
-          <span>
+          <p>
             Thanks for completing the form. We'll be in touch soon!
-          </span>
+          </p>
         </div>
       </dialog>
     </main>
