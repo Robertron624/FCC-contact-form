@@ -14,9 +14,7 @@ This is a solution to the [Contact form challenge on Frontend Mentor](https://ww
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
@@ -35,20 +33,13 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![form screenshot](image.png)
 
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Github repository](https://github.com/Robertron624/FCC-contact-form)
+- Live Site URL: [Site link](https://your-live-site-url.com)
 
 ## My process
 
@@ -59,59 +50,117 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - Flexbox
 - CSS Grid
 - Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
+- [TypeScript](https://www.typescriptlang.org/) - Superset of JavaScript, adding static typing to the language for better form validation
+- [Vite](https://vitejs.dev/) - Frontend build tool
 
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+I learned how to create custom checkboxes using pure CSS, it's easier than I thought. I decide not to use any front-end framework for this project, I wanted to challenge myself to create a form from scratch. I also learned how to use TypeScript to validate form data.
 
-To see how you can add code snippets, see below:
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
+- How I created custom checkboxes using pure CSS
 ```css
-.proud-of-this-css {
-  color: papayawhip;
+form input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--white);
+  margin: 0;
+  font: inherit;
+  color: var(--form-control-color);
+  width: 1.15em;
+  height: 1.15em;
+  border: 1.5px solid var(--form-control-color);
+  border-radius: 0.15em;
+  display: grid;
+  place-items: center;
 }
-```
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  /* box-shadow: inset 1em 1em var(--form-control-color); */
+  background-image: url('/images/icon-checkbox-check.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
 }
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+- How I used TypeScript to validate form data, this function returns an array of errors if the form data is invalid
+```ts
+function validateData(data: MyFormData){
+    const errors: {field: string, message: string}[] = [];
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+    const {firstName, lastName, email, queryType, message, consent} = data;
+    const requiredMessage = 'This field is required';
+
+    if(!firstName){
+        errors.push({
+            field: 'firstName',
+            message: requiredMessage
+        });
+    }
+
+    if(!lastName){
+        errors.push({
+            field: 'lastName',
+            message: requiredMessage
+        });
+    }
+
+    const isSubmittedEmailValid = isValidEmail(email);
+
+    if(!email || !isSubmittedEmailValid){
+        errors.push({
+            field: 'email',
+            message: 'Please enter a valid email address'
+        });
+    }
+
+    if(!queryType){
+        errors.push({
+            field: 'queryType',
+            message: 'Please select a query type'
+        });
+    }
+
+    if(!message){
+        errors.push({
+            field: 'message',
+            message: requiredMessage
+        });
+    }
+
+    if(!consent){
+        errors.push({
+            field: 'consent',
+            message: 'To submit this form, please consent to be contacted'
+        });
+    }
+
+    return errors;
+}
+```
+
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+I would like to continue to work on my form validation skills. I would also like to work on my pure CSS skills in order to make the form look more like the design. I would also like to work on my TypeScript skills in order to make the form more interactive.
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [Pure CSS Custom Checkbox Style](https://moderncss.dev/pure-css-custom-checkbox-style/) - This is an amazing article which helped me finally understand how to add custom checkboxes to my form in order to replicate the design. I'd recommend it to anyone still learning this concept.
 
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+- Website - [Robert Ramirez](https://www.robert-ramirez.co)
+- Frontend Mentor - [@Robertron624](https://frontendmentor.io/profile/Robertron624)
+- Github - [@Robertron624](https://github.com/Robertron624)
